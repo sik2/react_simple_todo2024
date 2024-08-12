@@ -1,41 +1,19 @@
 import { useEffect, useState } from 'react'
+import TodoHeader from './components/TodoHeader'
+import TodoForm from './components/TodoForm'
+import TodoList from './components/TodoList'
 
 function App() {
-    const [count, setCount] = useState(0)
-
-    useEffect(() => {
-        setCount(1)
-    })
-
+    const [todos, setTodos] = useState([
+        { id: 1, text: '할일1', checked: true },
+        { id: 2, text: '할일2', checked: true },
+        { id: 3, text: '할일3', checked: false },
+    ])
     return (
         <>
-            <h2>오늘의 할 일</h2>
-            <form>
-                <input type="text" />
-                <button>입력</button>
-            </form>
-            <ul>
-                <li>
-                    1
-                    <input type="checkbox" />
-                    아이템
-                    <button>🗑️</button>
-                </li>
-                <li>
-                    {' '}
-                    2
-                    <input type="checkbox" />
-                    아이템
-                    <button>🗑️</button>
-                </li>
-                <li>
-                    {' '}
-                    3
-                    <input type="checkbox" />
-                    아이템
-                    <button>🗑️</button>
-                </li>
-            </ul>
+            <TodoHeader />
+            <TodoForm />
+            <TodoList todos={todos} />
         </>
     )
 }
