@@ -1,10 +1,12 @@
-function TodoListItem() {
+function TodoListItem({ todo }) {
     return (
-        <li>
-            1
-            <input type="checkbox" />
-            아이템
-            <button>🗑️</button>
+        <li
+            style={{
+                textDecoration: todo.checked ? 'line-through' : 'none',
+            }}
+        >
+            <input type="checkbox" checked={todo.checked} />
+            {todo.id} / {todo.text} / <button>🗑️</button>
         </li>
     )
 }
