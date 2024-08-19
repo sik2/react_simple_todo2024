@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import TodoHeader from '../components/TodoHeader'
 import TodoForm from '../components/TodoForm'
 import TodoList from '../components/TodoList'
+import Layout from './Layout'
 
 function Todos() {
     const [todos, setTodos] = useState([
@@ -32,9 +33,15 @@ function Todos() {
 
     return (
         <>
-            <TodoHeader />
-            <TodoForm onInsert={onInsert} />
-            <TodoList todos={todos} onDelete={onDelete} onToggle={onToggle} />
+            <Layout>
+                <TodoHeader />
+                <TodoForm onInsert={onInsert} />
+                <TodoList
+                    todos={todos}
+                    onDelete={onDelete}
+                    onToggle={onToggle}
+                />
+            </Layout>
         </>
     )
 }
