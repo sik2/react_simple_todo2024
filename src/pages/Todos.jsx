@@ -5,16 +5,16 @@ import TodoList from '../components/TodoList'
 import Layout from './Layout'
 
 function Todos() {
-    const [todos, setTodos] = useState([
-        { id: 1, text: '할일1', checked: true },
-        { id: 2, text: '할일2', checked: true },
-        { id: 3, text: '할일3', checked: false },
-    ])
+    const [todos, setTodos] = useState([])
 
-    let lastId = todos.length + 1
+    useEffect(() => {
+        fetch('https://dummyjson.com/todos')
+            .then((res) => res.json())
+            .then((data) => setTodos(data.todos))
+    }, [])
 
-    const onInsert = (text) => {
-        const newTodos = [...todos, { id: lastId, text, checked: false }]
+    const onInsert = (todo) => {
+        const newTodos = [...todos, { id: lastId, todo, completed: false }]
         setTodos(newTodos)
         lastId++
     }
@@ -26,7 +26,7 @@ function Todos() {
 
     const onToggle = (id) => {
         const newTodos = todos.map((todo) =>
-            todo.id === id ? { ...todo, checked: !todo.checked } : todo
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo
         )
         setTodos(newTodos)
     }
